@@ -18,6 +18,10 @@ type TFormProps = {
   //     password: string;
   //   };
 } & TFormConfig;
+//  defaultValues?: {
+//     id: string;
+//     password: string;
+//   };
 const PHForm = ({ onSubmit, defaultValues, children }: TFormProps) => {
   const formConfig: TFormConfig = {};
 
