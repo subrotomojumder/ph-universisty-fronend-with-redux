@@ -1,5 +1,5 @@
 import AdminDashboard from "../pages/admin/AdminDashboard";
-import CreateAdmin from "../pages/admin/CreateAdmin";
+import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
 
 export const facultyPaths = [
   {

@@ -28,7 +28,7 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 > = async (args, api, extraOptions): Promise<any> => {
   let results = await baseQuery(args, api, extraOptions);
   if (results.error?.status === 404) {
-    toast.error(results.error.data.message)
+    toast.error(results.error.data.message);
   }
   if (results.error?.status === 401) {
     const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
@@ -55,5 +55,11 @@ export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
   endpoints: () => ({}),
-  tagTypes: ["academic-semesters", "academic-faculties", "academic-departments"]
+  tagTypes: [
+    "users",
+    "students",
+    "academic-semesters",
+    "academic-faculties",
+    "academic-departments",
+  ],
 });

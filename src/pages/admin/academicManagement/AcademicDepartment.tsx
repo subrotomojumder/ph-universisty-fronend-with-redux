@@ -3,11 +3,10 @@ import { TAcademicDepartment, TQueryParam } from "../../../types";
 import { useGetAllAcademicDepartmentQuery } from "../../../redux/features/admin/academicManagement.api";
 import { Button, Table, TableColumnsType } from "antd";
 
-type TTableData = Pick<
-  TAcademicDepartment,
-  "name" | "academicFaculty" | "createdAt"
->;
-
+type TTableData = Pick<TAcademicDepartment, "name" | "createdAt"> & {
+  academicFaculty: string;
+};
+// type TTableData = Pick<TAcademicFaculty, "name" | "createdAt">;
 const AcademicDepartment = () => {
   const [params, setParams] = useState<TQueryParam[] | undefined>(undefined);
   const {
