@@ -1,20 +1,20 @@
-import AdminDashboard from "../pages/admin/AdminDashboard";
-import CreateAdmin from "../pages/admin/userManagement/CreateAdmin";
+import FacultyDashboard from "../pages/faculty/FacultyDashboard";
+import MyCourses from "../pages/faculty/MyCourses";
+import MyStudents from "../pages/faculty/MyStudents";
 
 export const facultyPaths = [
   {
     name: "Dashboard",
     path: "dashboard",
-    element: <AdminDashboard />,
+    element: <FacultyDashboard />,
   },
   {
-    name: "Course Management",
-    children: [
-      {
-        name: "My Classes",
-        path: "offered-course",
-        element: <CreateAdmin />,
-      },
-    ],
+    name: "My Courses",
+    path: "courses",
+    element: <MyCourses />,
+  },
+  {
+    path: "courses/:semesterRegisterId/:courseId",
+    element: <MyStudents />,
   },
 ];

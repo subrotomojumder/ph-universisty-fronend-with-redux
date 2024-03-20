@@ -1,26 +1,26 @@
-import { Form, Input } from "antd";
+import { Form, TimePicker } from "antd";
 import { Controller } from "react-hook-form";
 
-type TInputProps = {
-  type: string;
+type TTimePickerProps = {
   name: string;
   label?: string;
   disabled?: boolean;
 };
 
-const PHInput = ({ type, name, label, disabled }: TInputProps) => {
+const PHTimePicker = ({ name, label, disabled }: TTimePickerProps) => {
   return (
     <div style={{ marginBottom: "20px" }}>
       <Controller
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Input
+            <TimePicker
               {...field}
-              type={type}
               id={name}
               size="large"
+              style={{ width: "100%" }}
               disabled={disabled}
+              format={"HH:mm"}
             />
             {error && <small style={{ color: "red" }}>{error.message}</small>}
           </Form.Item>
@@ -30,4 +30,4 @@ const PHInput = ({ type, name, label, disabled }: TInputProps) => {
   );
 };
 
-export default PHInput;
+export default PHTimePicker;

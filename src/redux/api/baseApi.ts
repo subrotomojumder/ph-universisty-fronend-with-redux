@@ -30,6 +30,9 @@ const baseQueryWithRefreshToken: BaseQueryFn<
   if (results.error?.status === 404) {
     toast.error(results.error.data.message);
   }
+  if (results.error?.status === 403) {
+    toast.error(results.error.data.message);
+  }
   if (results.error?.status === 401) {
     const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
       method: "POST",
@@ -61,5 +64,8 @@ export const baseApi = createApi({
     "academic-semesters",
     "academic-faculties",
     "academic-departments",
+    "semester-registration",
+    "courses",
+    "offeredCourse"
   ],
 });

@@ -3,7 +3,9 @@ import { sidebarItemsGenerators } from "../../utils/sidebarItemsGenerators";
 import { adminPaths } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
 import { useAppSelector } from "../../redux/hooks";
-import { selectCurrentUser } from "../../redux/features/auth/authSlice";
+import { TUser, selectCurrentToken } from "../../redux/features/auth/authSlice";
+import { verifyToken } from "../../utils/verifyToken";
+import { studentPaths } from "../../routes/student.route";
 const { Sider } = Layout;
 
 const userRole = {
@@ -12,9 +14,13 @@ const userRole = {
   STUDENT: "student",
 };
 const Sidebar = () => {
-  const user = useAppSelector(selectCurrentUser);
+  const token = useAppSelector(selectCurrentToken);
+  let user;
+  if (token) {
+    user = verifyToken(token);
+  }
   let sideBarItems;
-  switch (user!.role) {
+  switch ((user as TUser)!.role) {
     case userRole.ADMIN:
       sideBarItems = sidebarItemsGenerators(adminPaths, userRole.ADMIN);
       break;
@@ -22,14 +28,14 @@ const Sidebar = () => {
       sideBarItems = sidebarItemsGenerators(facultyPaths, userRole.FACULTY);
       break;
     default:
-      sideBarItems = sidebarItemsGenerators(facultyPaths, userRole.STUDENT);
+      sideBarItems = sidebarItemsGenerators(studentPaths, userRole.STUDENT);
       break;
   }
   return (
     <Sider
       breakpoint="lg"
       collapsedWidth="0"
-      style={{ height: "100vh", position: "sticky", left: "0", top: "0"}}
+      style={{ height: "100vh", position: "sticky", left: "0", top: "0" }}
     >
       <div
         className="demo-logo-vertical"

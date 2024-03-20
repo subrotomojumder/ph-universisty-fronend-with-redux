@@ -59,7 +59,7 @@ const CreateStudent = () => {
     label: `${item.name}`,
     value: item._id,
   }));
-  const onSubmit: SubmitHandler<FieldValues> = async(data) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Creating...");
     const formData = new FormData();
     const studentData = {
@@ -69,9 +69,8 @@ const CreateStudent = () => {
     formData.append("data", JSON.stringify(studentData));
     formData.append("file", data.image);
     try {
-      const res = (await addStudent(formData)) as TResponse<
-        TStudent[]
-      >;
+      const res = (await addStudent(formData)) as TResponse<TStudent[]>;
+      // console.log(res);
       if (res.error) {
         toast.error(res.error.data.message, { id: toastId });
       } else {
@@ -88,9 +87,9 @@ const CreateStudent = () => {
     <Row>
       <Col span={24}>
         <PHForm
-         onSubmit={onSubmit}
+          onSubmit={onSubmit}
           // defaultValues={defaultData}
-          >
+        >
           <Divider>Personal Info</Divider>
           <Row gutter={10}>
             <Col span={24} md={{ span: 12 }} lg={{ span: 8 }}>
